@@ -1,0 +1,181 @@
+#####################################
+##### Config file for i3 wm #########
+#####################################
+
+# Definitions
+for_window [class="^.*"] border pixel 2
+gaps inner 15
+gaps outer 15
+set $term --no-startup-id $TERMINAL
+set $mod Mod4
+
+###################################
+####  Things to run at startup ####
+###################################
+#Setting the background
+exec --no-startup-id feh --bg-fill $HOME/.config/wallpapers/spacemountains.jpg
+#Dunst for notifications
+exec --no-startup-id dunst
+#Composite manager compton
+exec --no-startup-id compton -b
+#Get colors from pywal
+exec_always wal -R
+#Try to connect to my bluetooth keyboard
+#comment this out if not in use
+exec --no-startup-id connect_anne_pro.sh
+
+####################################
+#### Setting up dropdown terminal###
+####################################
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 625 400
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 5
+for_window [instance="dropdown"] sticky enable
+exec $term -n dropdown
+
+#################################
+############## Bar ##############
+#################################
+bar{
+	font pango:mono 10
+	status_command i3blocks
+	position top
+	mode dock
+	modifier None
+}
+
+################################
+##### Keybindings ##############
+################################
+
+#Kill currently focused window
+bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!dropdown).*$"] kill
+
+#Launch st terminal
+bindsym $mod+Return exec $term
+
+#Enable / disable floating mode
+bindsym $mod+Shift+space floating toggle
+
+#Toggle split
+
+#Focus mode
+bindsym $mod+space focus mode_toggle
+
+#Move to previous and next workspace
+bindsym $mod+Shift+ö workspace prev
+bindsym $mod+Shift+ä workspace next
+
+#Exit i3
+bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3-msg-exit"
+
+#Launch firefox
+bindsym $mod+Shift+w exec --no-startup-id $BROWSER
+
+#Launch ranger
+bindsym $mod+r exec $term -e $FILE
+
+#Toggle split
+bindsym $mod+t split toggle
+
+#Show / hide dropdown
+bindsym $mod+u [instance="dropdown"] scratchpad show; [instance="dropdown"] move position center
+
+#Resize gaps
+bindsym $mod+s gaps inner current plus 5
+bindsym $mod+Shift+s gaps inner current minus 5
+
+#Dmenu
+bindsym $mod+d exec --no-startup-id dmenu_run
+
+#Set gaps to 0
+bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
+
+#Fullscreen
+bindsym $mod+f fullscreen toggle
+
+#Outer gaps
+bindsym $mod+z gaps outer current plus 5
+bindsym $mod+Shift+z gaps outer current minus 5
+
+#Switch focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+left focus left
+bindsym $mod+down focus down
+bindsym $mod+up focus up
+bindsym $mod+right focus right
+
+#Lockscreen
+bindsym $mod+x exec --no-startup-id blurlock.sh
+
+#Toggle bar
+bindsym $mod+b bar mode toggle
+
+#Power management
+
+#set $mode_system  System (l) lock, (e) logout (s) suspend, (h) hibernate, (r) reboot (Shift+s) shutdown
+#mode "$mode_power"{
+#	bindsym l exec --no-startup-id bash blurlock.sh
+#	bindsym e exec --no-startup-id i3-msg exit, mode "default"
+#	bindsym s exec --no-startup-id bash blurlock.sh && sleep 1 && systemctl suspend, mode "default"
+#	bindsym h exec --no-startup-id bash blurlock.sh && sleep 1 && systemclt hibernate, mode "default"
+#	bindsym r exec --no-startup-id systemctl reboot, mode "default"
+#	bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+#
+#	#back to normal
+#	bindsym Return mode "default"
+#	bindsym Escape mode "default"
+#}
+
+#bindsym $mod+Shift+x mode "$mode_power"
+
+##################################
+##### Workspace ##################
+##################################
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+#Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+#Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+########Restart i3#########
+bindsym $mod+F2 restart
+
+##########################
+#### Set colours #########
+##########################
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
