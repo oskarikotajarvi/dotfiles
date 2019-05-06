@@ -58,14 +58,12 @@ bindsym $mod+Return exec $term
 #Enable / disable floating mode
 bindsym $mod+Shift+space floating toggle
 
-#Toggle split
-
 #Focus mode
 bindsym $mod+space focus mode_toggle
 
 #Move to previous and next workspace
-bindsym $mod+Shift+ö workspace prev
-bindsym $mod+Shift+ä workspace next
+bindsym $mod+Shift+p workspace prev
+bindsym $mod+Shift+o workspace next
 
 #Exit i3
 bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3-msg-exit"
