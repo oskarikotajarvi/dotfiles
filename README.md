@@ -1,2 +1,2 @@
 # dotfiles
-My dotfiles for i3 configuration
+My dotfiles for i3wm configuration
