@@ -3,17 +3,22 @@
 #####################################
 
 # Definitions
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 15
+smart_borders on
+#smart_gaps on
 set $term --no-startup-id $TERMINAL
 set $mod Mod4
+
+#Font
+font pango:mono 8
 
 ###################################
 ####  Things to run at startup ####
 ###################################
 #Setting the background
-exec --no-startup-id feh --bg-fill $HOME/.config/wallpapers/spacemountains.jpg
+#exec --no-startup-id feh --bg-fill $HOME/.config/wallpapers/glowing_lake.jpg
 #Dunst for notifications
 exec --no-startup-id dunst
 #Composite manager compton
@@ -22,7 +27,11 @@ exec --no-startup-id compton -b
 exec_always wal -R
 #Try to connect to my bluetooth keyboard
 #comment this out if not in use
-exec --no-startup-id connect_anne_pro.sh
+#exec --no-startup-id connect_anne_pro.sh
+#Disable screen blanking
+exec --no-startup-id screendisableoff
+#Launch polybar
+exec_always --no-startup-id polylaunch.sh
 
 ####################################
 #### Setting up dropdown terminal###
@@ -37,17 +46,20 @@ exec $term -n dropdown
 #################################
 ############## Bar ##############
 #################################
-bar{
-	font pango:mono 10
-	status_command i3blocks
-	position top
-	mode dock
-	modifier None
-}
+#bar{
+#	font pango:mono 10
+#	status_command i3blocks
+#	position top
+#	mode dock
+#	modifier None
+#}
 
 ################################
 ##### Keybindings ##############
 ################################
+
+#User Mouse+mod to drag floating windows to their wanter position
+floating_modifier $mod
 
 #Kill currently focused window
 bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!dropdown).*$"] kill
@@ -62,8 +74,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 #Move to previous and next workspace
-bindsym $mod+Shift+p workspace prev
-bindsym $mod+Shift+o workspace next
+bindsym $mod+Shift+o workspace prev
+bindsym $mod+Shift+p workspace next
 
 #Exit i3
 bindsym $mod+Shift+Escape exec --no-startup-id prompt "Exit i3?" "i3-msg-exit"
@@ -85,7 +97,7 @@ bindsym $mod+s gaps inner current plus 5
 bindsym $mod+Shift+s gaps inner current minus 5
 
 #Dmenu
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
 
 #Set gaps to 0
 bindsym $mod+Shift+d gaps inner current set 0; gaps outer current set 0
@@ -102,16 +114,41 @@ bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+left focus left
-bindsym $mod+down focus down
-bindsym $mod+up focus up
-bindsym $mod+right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+#Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l focus right
+
+#Change container layout (stacked, tabbed, toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
+
+#Resize windows
+bindsym $mod+Shift+m resize shrink width 10 px or 10 ppt
+bindsym $mod+Shift+n resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+b resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+v resize grow width 10 px or 10 ppt
 
 #Lockscreen
 bindsym $mod+x exec --no-startup-id blurlock.sh
 
 #Toggle bar
 bindsym $mod+b bar mode toggle
+
+#Backlight control
+bindsym $mod+Shift+minus exec xbacklight -inc 5
+bindsym $mod+Shift+comma exec xbacklight -dec 5
+
+#Volume control
+bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym $mod+comma exec --no-startup-id pactl set-sink-volume 0 -5%
 
 #Power management
 
