@@ -1,0 +1,46 @@
+{
+    "editor.scrollbar.vertical": "hidden",
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "toggle",
+    "workbench.statusBar.visible": true,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#000000",
+        "sideBar.background": "#000000",
+        "editor.background": "#000000",
+        "editorGroupHeader.tabsBackground": "#000000",
+        "editorGroup.emptyBackground": "#000000",
+        "tab.border": "#000000",
+        "tab.activeBorder": "#ff0000",
+        "tab.inactiveBackground": "#000000",
+        
+    },
+    "editor.fontFamily": "\"Hack\"",
+    "editor.codeActionsOnSave":{
+        "source.organizeImports": true
+    },
+    "workbench.activityBar.visible": true,
+    "workbench.tree.indent": 4,
+    "workbench.colorTheme": "Dark++",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "breadcrumbs.enabled": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "terminal.integrated.fontFamily": "monospace",
+    "editor.fontSize": 13
+}

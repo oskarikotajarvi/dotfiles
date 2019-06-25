@@ -1,0 +1,18 @@
+[2019-06-13 08:08:12.016] [exthost] [info] extension host started
+[2019-06-13 08:08:12.026] [exthost] [info] ExtensionService#_doActivateExtension vscode.typescript-language-features {"startup":false,"activationEvent":"onLanguage:javascript"}
+[2019-06-13 08:08:12.026] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/typescript-language-features/dist/extension
+[2019-06-13 08:08:12.094] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"activationEvent":"*"}
+[2019-06-13 08:08:12.094] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/debug-auto-launch/dist/extension
+[2019-06-13 08:08:12.097] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"activationEvent":"*"}
+[2019-06-13 08:08:12.097] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/emmet/dist/extension
+[2019-06-13 08:08:12.112] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"activationEvent":"*"}
+[2019-06-13 08:08:12.112] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/git/dist/main
+[2019-06-13 08:08:12.178] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"activationEvent":"*"}
+[2019-06-13 08:08:12.178] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/merge-conflict/dist/extension
+[2019-06-13 08:08:12.183] [exthost] [info] ExtensionService#_doActivateExtension esbenp.prettier-vscode {"startup":true,"activationEvent":"*"}
+[2019-06-13 08:08:12.183] [exthost] [info] ExtensionService#loadCommonJSModule /home/user/.vscode-oss/extensions/esbenp.prettier-vscode-1.9.0/out/src/extension
+[2019-06-13 08:08:12.282] [exthost] [info] eager extensions activated
+[2019-06-13 08:10:20.688] [exthost] [info] ExtensionService#_doActivateExtension vscode.configuration-editing {"startup":false,"activationEvent":"onLanguage:jsonc"}
+[2019-06-13 08:10:20.689] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/configuration-editing/dist/extension
+[2019-06-13 08:10:20.697] [exthost] [info] ExtensionService#_doActivateExtension vscode.json-language-features {"startup":false,"activationEvent":"onLanguage:jsonc"}
+[2019-06-13 08:10:20.697] [exthost] [info] ExtensionService#loadCommonJSModule /usr/lib/code/extensions/json-language-features/client/dist/jsonMain

@@ -1,0 +1,119 @@
+################################
+# Backend and other definitons #
+################################
+
+backend = "glx";
+glx-no-stencil = true;
+#glx-copy-from-front = false;
+#glx-swap-method = "undefined";
+#mark-wmwin-focused = true;
+#mark-ovedir-focused = true;
+#detect-rounded-corners = true;
+#detect-client-opacity = true;
+#refresh-rate = 0;
+#vsync = "none";
+#dbe = false;
+#paint-on-overlay = true;
+#detect-transient = true;
+#detect-client-leader = true;
+
+
+###########
+# Shadows #
+###########
+
+#Enable client-side shadows on windows
+shadow = false;
+#Don't draw shadow on DND windows
+no-dnd-shadow = true;
+#Avoid drawing shadows on dock/panel windows
+no-dock-shadows = true;
+#Zero the part of the shadow's mask behind the window.
+clear-shadow = true;
+#The blur radius for shadows
+shadow-radius = 20;
+#The left offset for shadows
+shadow-offset-x = -10;
+#The top offset for shadows
+shadow-offset-y = -10;
+#The translucency for shadows
+shadow-opacity = .8;
+
+#Shadow exclude options
+shadow-exclude = [
+	"! name~=''",
+	"name = 'Notification'",
+	"name = 'Plank'",
+	"name = 'Docky'",
+	"name = 'Kupfer'",
+	"name = 'xfce4-notifyd'",
+	"name *= 'VLC'",
+	"name *= 'compton'",
+	"name *= 'Chromium'",
+	"name *= 'Chrome'",
+	"class_g = 'Firefox' && argb",
+	"class_g = 'Conky'",
+	"class_g = 'Kupfer'",
+	"class_g = 'Synapse'",
+	"class_g ?= 'Notify-osd'",
+	"class_g ?= 'Cairo-dock'",
+"class_g ?= 'Xfce4-notifyd'",
+	"class_g ?= 'Xfce4-power-manager'",
+	"_GTK_FRAME_EXTENTS@:c",
+	"_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
+];
+
+#Avoid drawing shadow on all shaped windows
+shadow-ignore-shaped = false;
+
+###########
+# Opacity #
+###########
+
+menu-opacity = 1;
+inactive-opacity = 0.8;
+active-opacity = 0.9;
+frame-opacity = 0.80;
+inactive-opacity-override = false;
+alpha-step = 0.02;
+#blur-kern = "3x3box";
+#blur-kern = "11x11gaussian" #my laptop does not handle this well
+blur-background = true;
+blur-background-frame = true;
+blur-background-fixed = false;
+blur-method = "kawase";
+blur-strength = 10;
+
+opacity-rule = [
+	"100:class_g = 'Firefox'",
+	"99:class_g = 'Chromium'",
+	"99:class_g = 'VirtualBox'",
+    "100:class_g = 'libreoffice'",
+    "100:class_g = 'libreoffice-startcenter'",
+    "100:class_g = 'libreoffice-writer'",
+    "100:class_g = 'jetbrains-studio'"
+];
+
+#blur-method = "kawase";
+#blur-strength = 20;
+#blur-background = true;
+#blur-background-frame = false;
+
+##########
+# Fading #
+##########
+
+#Fade windows on opacity changes
+fading = false;
+#The time between steps in fade in milliseconds
+fade-delta = 4;
+#Opacity change between steps while fading in
+fade-in-step = 0.03;
+#Opacity change between steps while fading out
+fade-out-step = 0.03;
+#Fade windows in/out when opening/closing
+no-fading-openclose = true;
+#Specified list of conditions of windows that should not be faded
+fade-exclude = [ ];
+
+xrender-sync-fence = true;
