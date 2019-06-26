@@ -1,4 +1,5 @@
 "Set up plugins
+let mapleader=" "
 filetype off
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin('~/.config/nvim/bundle')
@@ -13,7 +14,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/emmet-vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'prettier/vim-prettier', { 'do': 'npm install' }
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'Valloric/MatchTagAlways'
@@ -30,9 +31,9 @@ Plugin 'dylanaraps/wal.vim'
 
 call vundle#end()
 filetype plugin indent on "allows auto-indenting depending on file type
-
-
 "colorscheme wal
+set splitbelow splitright
+set number relativenumber
 set t_ut=
 colorscheme codedark
 set nocompatible
@@ -49,6 +50,12 @@ set wildmode=longest,list
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+"Mapping
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 
 let g:syntastic_always_populate_loc_list = 1
