@@ -28,6 +28,8 @@ Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'Raimondi/delimitMate'
 Plugin 'alvan/vim-closetag'
 Plugin 'dylanaraps/wal.vim'
+Plugin 'vim-python/python-syntax'
+Plugin 'floobits/floobits-neovim'
 
 call vundle#end()
 filetype plugin indent on "allows auto-indenting depending on file type
@@ -79,7 +81,7 @@ let g:closetag_shortcut = '>'
 "let g:closetag_close_shortcut = '<leader>>'
 let g:deoplete#enable_at_startup = 1
 let g:airline_theme = 'codedark'
-
+let g:python_highlight_all = 1
 
 call neomake#configure#automake('nrwi', 500)
 
