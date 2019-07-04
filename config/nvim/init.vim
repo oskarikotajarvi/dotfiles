@@ -34,10 +34,10 @@ Plugin 'floobits/floobits-neovim'
 call vundle#end()
 filetype plugin indent on "allows auto-indenting depending on file type
 "colorscheme wal
+"colorscheme codedark
 set splitbelow splitright
 set number relativenumber
 set t_ut=
-colorscheme codedark
 set nocompatible
 set showmatch
 set ignorecase
