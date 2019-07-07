@@ -29,7 +29,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'alvan/vim-closetag'
 Plugin 'dylanaraps/wal.vim'
 Plugin 'vim-python/python-syntax'
-Plugin 'floobits/floobits-neovim'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'Galooshi/vim-import-js'
 
 call vundle#end()
 filetype plugin indent on "allows auto-indenting depending on file type
@@ -82,11 +83,15 @@ let g:closetag_shortcut = '>'
 let g:deoplete#enable_at_startup = 1
 let g:airline_theme = 'codedark'
 let g:python_highlight_all = 1
+let g:js_file_import_sort_after_insert = 1
 
 call neomake#configure#automake('nrwi', 500)
 
+autocmd BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+autocmd BufNewFile,BufRead *ts setlocal filetype=typescript
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 map <C-n> :NERDTreeToggle<CR>
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
