@@ -7,7 +7,7 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugins after this line
 
 Plugin 'tomasiser/vim-code-dark'
-Plugin 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
+"Plugin 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'scrooloose/nerdtree'
@@ -31,6 +31,7 @@ Plugin 'dylanaraps/wal.vim'
 Plugin 'vim-python/python-syntax'
 Plugin 'ludovicchabant/vim-gutentags'
 Plugin 'Galooshi/vim-import-js'
+Plugin 'joshdick/onedark.vim'
 
 call vundle#end()
 filetype plugin indent on "allows auto-indenting depending on file type
@@ -53,12 +54,18 @@ set wildmode=longest,list
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+"Folding
+"set foldmethod=indent
+"augroup OpenAllFoldsOnFileOpen
+    "autocmd!
+    "autocmd BufRead * normal zR
+"augroup END
 
 "Mapping
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+"map <C-h> <C-w>h
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-l> <C-w>l
 
 
 let g:syntastic_always_populate_loc_list = 1
@@ -80,8 +87,8 @@ let g:closetag_xhtml_filetypes = 'xhtml,javascript.jsx,jsx,typescript.tsx,tsx'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 "let g:closetag_close_shortcut = '<leader>>'
-let g:deoplete#enable_at_startup = 1
-let g:airline_theme = 'codedark'
+"let g:deoplete#enable_at_startup = 1
+let g:airline_theme = 'onedark'
 let g:python_highlight_all = 1
 let g:js_file_import_sort_after_insert = 1
 
@@ -94,4 +101,14 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
 map <C-n> :NERDTreeToggle<CR>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+"ColorScheme
+"if (has("autocmd") && !has("gui_running"))
+  "augroup colorset
+    "autocmd!
+    "let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    "autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  "augroup END
+"endif
+"colorscheme onedark
