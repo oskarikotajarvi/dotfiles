@@ -24,10 +24,16 @@ Plugin 'neomake/neomake'
 Plugin 'Valloric/MatchTagAlways'
 Plugin 'joshdick/onedark.vim'
 Plugin 'wellle/targets.vim'
+Plugin 'StanAngeloff/php.vim'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'dsawardekar/wordpress.vim'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'flazz/vim-colorschemes'
 call vundle#end()
 
 "Other SETup
-filetype plugin indent on 
+filetype plugin indent on
 set splitbelow splitright
 set cursorline
 set scrolloff=1
@@ -47,17 +53,18 @@ set autoindent
 set number
 set wildmode=longest,list
 set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set matchpairs+=<:>
 
 "Colorscheme
-if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#abb2bf", "cterm": "145", "cterm16" : "7" }
-    autocmd colorscheme * call onedark#set_highlight("normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup end
-endif
+"if (has("autocmd") && !has("gui_running"))
+  "augroup colorset
+    "autocmd!
+    "let s:white = { "gui": "#abb2bf", "cterm": "145", "cterm16" : "7" }
+    "autocmd colorscheme * call onedark#set_highlight("normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  "augroup end
+"endif
 colorscheme onedark
 
 "Mapping
@@ -86,9 +93,19 @@ cmap <C-e> <end>
 " Clear search highlighting with Escape key
 nnoremap <silent><esc> :noh<return><esc>
 
+" Tab completing for Emmet
+let g:user_emmet_expandabbr_key='<M-a>'
+
+"Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 "Prettier
 let g:prettier#autoformat = 0
 let g:prettier#config#tab_width = 4
+let g:prettier#config#print_width = 120
 
 "Prettier for PHP
 "function PrettierPhpCursor()
@@ -119,6 +136,7 @@ call neomake#configure#automake('nrwi', 500)
 
 "NerdTree
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeShowHidden = 1
 
 "JSX
 let g:jsx_ext_required=1
@@ -133,8 +151,11 @@ let g:mta_filetypes = {
     \ 'typescript.tsx' : 1,}
 
 "Set filetypes
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 autocmd BufNewFile,BufRead *ts set filetype=typescript
+
+"Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 
 "Colors for tabline
 hi TabLine      ctermfg=254 ctermbg=238 cterm=none

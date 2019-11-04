@@ -151,8 +151,8 @@ bindsym $mod+Shift+comma exec xbacklight -dec 5
 
 #Volume control
 set $sink `pactl list short sinks | cut -f1`
-bindsym $mod+minus exec --no-startup-id pactl set-sink-volume $sink +5%
-bindsym $mod+comma exec --no-startup-id pactl set-sink-volume $sink -5%
+bindsym $mod+minus exec --no-startup-id pactl set-sink-volume 1 +5%
+bindsym $mod+comma exec --no-startup-id pactl set-sink-volume 1 -5%
 
 #Power management
 
