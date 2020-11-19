@@ -9,6 +9,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 "Plugins under this
 Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'Shougo/denite.nvim'
 Plugin 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plugin 'prettier/vim-prettier', { 'do': 'npm install' }
@@ -19,19 +21,21 @@ Plugin 'mattn/emmet-vim'
 Plugin 'preservim/nerdcommenter'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Raimondi/delimitMate'
-Plugin 'Valloric/MatchTagAlways'
+"Plugin 'Valloric/MatchTagAlways'
 Plugin 'morhetz/gruvbox'
 Plugin 'kaicataldo/material.vim'
 Plugin 'hzchirs/vim-material'
 Plugin 'joshdick/onedark.vim'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on
 
 "=== Usual setup ==="
 set splitbelow splitright
 set cursorline
-set scrolloff=999
-set sidescrolloff=5
+"set scrolloff=999
+"set sidescrolloff=5
+set so=999
 set number relativenumber
 set showmatch
 set ignorecase
@@ -50,18 +54,37 @@ syntax on
 autocmd BufWritePre * %s/\s\+$//e
 
 "Statusline
-set statusline=
-set statusline+=%#DiffText#
-set statusline+=\ %M
-set statusline+=\ %y
-set statusline+=\ %r
-set statusline+=\ %F
-set statusline+=%= "Right side
-set statusline+=%#DiffAdd#
-set statusline+=\ %p%%
-set statusline+=\ %c:%l/%L
-set statusline+=\ [Buf
-set statusline+=\ %n]
+let g:airline_section_b = '%{strftime("%c")}'
+" air-line
+let g:airline_powerline_fonts = 1
+
+"if !exists('g:airline_symbols')
+    "let g:airline_symbols = {}
+"endif
+" unicode symbols
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
+"let g:airline_symbols.linenr = '␊'
+"let g:airline_symbols.linenr = '␤'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.whitespace = 'Ξ'
+"" airline symbols
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
+
+" Tabline
+let g:airline#extensions#tabline#enabled = 1
 
 "ColocScheme
 "if (has('nvim'))
@@ -96,55 +119,55 @@ let g:onedark_terminal_italics = 1
 " === Prettier setup === "
 let g:prettier#config#single_quote = 'true'
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.html PrettierAsync
 
 "=== Denite setup ==="
-call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-" Use ripgrep in place of grep
-call denite#custom#var('grep', 'command', ['rg'])
-" Custom options for ripgrep
-"   --vimgrep:  Show results with every match on it's own line
-"   --hidden:   Search hidden directories and files
-"   --heading:  Show the file name above clusters of matches from each file
-"   --S:        Search case insensitively if the pattern is all lowercase
-call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
-" Recommended defaults for ripgrep via Denite docs
-call denite#custom#var('grep', 'recursive_opts', [])
-call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-call denite#custom#var('grep', 'separator', ['--'])
-call denite#custom#var('grep', 'final_opts', [])
-" Remove date from buffer list
-call denite#custom#var('buffer', 'date_format', '')
-" Custom options for Denite
-"   auto_resize             - Auto resize the Denite window height automatically.
-"   prompt                  - Customize denite prompt
-"   direction               - Specify Denite window direction as directly below current pane
-"   winminheight            - Specify min height for Denite window
-"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-"   prompt_highlight        - Specify color of prompt
-"   highlight_matched_char  - Matched characters highlight
-"   highlight_matched_range - matched range highlight
-let s:denite_options = {'default' : {
-\ 'split': 'floating',
-\ 'start_filter': 1,
-\ 'auto_resize': 1,
-\ 'source_names': 'short',
-\ 'prompt': 'λ ',
-\ 'highlight_matched_char': 'QuickFixLine',
-\ 'highlight_matched_range': 'Visual',
-\ 'highlight_window_background': 'Visual',
-\ 'highlight_filter_background': 'DiffAdd',
-\ 'winrow': 1,
-\ 'vertical_preview': 1
-\ }}
-" Loop through denite options and enable them
-function! s:profile(opts) abort
-  for l:fname in keys(a:opts)
-    for l:dopt in keys(a:opts[l:fname])
-      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-    endfor
-  endfor
-endfunction
+"call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+"" Use ripgrep in place of grep
+"call denite#custom#var('grep', 'command', ['rg'])
+"" Custom options for ripgrep
+""   --vimgrep:  Show results with every match on it's own line
+""   --hidden:   Search hidden directories and files
+""   --heading:  Show the file name above clusters of matches from each file
+""   --S:        Search case insensitively if the pattern is all lowercase
+"call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
+"" Recommended defaults for ripgrep via Denite docs
+"call denite#custom#var('grep', 'recursive_opts', [])
+"call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+"call denite#custom#var('grep', 'separator', ['--'])
+"call denite#custom#var('grep', 'final_opts', [])
+"" Remove date from buffer list
+"call denite#custom#var('buffer', 'date_format', '')
+"" Custom options for Denite
+""   auto_resize             - Auto resize the Denite window height automatically.
+""   prompt                  - Customize denite prompt
+""   direction               - Specify Denite window direction as directly below current pane
+""   winminheight            - Specify min height for Denite window
+""   highlight_mode_insert   - Specify h1-CursorLine in insert mode
+""   prompt_highlight        - Specify color of prompt
+""   highlight_matched_char  - Matched characters highlight
+""   highlight_matched_range - matched range highlight
+"let s:denite_options = {'default' : {
+"\ 'split': 'floating',
+"\ 'start_filter': 1,
+"\ 'auto_resize': 1,
+"\ 'source_names': 'short',
+"\ 'prompt': 'λ ',
+"\ 'highlight_matched_char': 'QuickFixLine',
+"\ 'highlight_matched_range': 'Visual',
+"\ 'highlight_window_background': 'Visual',
+"\ 'highlight_filter_background': 'DiffAdd',
+"\ 'winrow': 1,
+"\ 'vertical_preview': 1
+"\ }}
+"" Loop through denite options and enable them
+"function! s:profile(opts) abort
+  "for l:fname in keys(a:opts)
+    "for l:dopt in keys(a:opts[l:fname])
+      "call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
+    "endfor
+  "endfor
+"endfunction
 
 "=== Nerdtree ==="
 " Show hidden files/directories
@@ -182,17 +205,17 @@ xnoremap J :move '>+1<CR>gv-gv
 
 " === Emmet === "
 "let g:user_emmet_expandabbr_key='<M-a>'
-let g:user_emmet_leader_key = '<c-s>'
+let g:user_emmet_leader_key = '<C-J>'
 
 "=== Denite shortcuts ==="
 "   ;         - Browser currently open buffers
 "   <leader>t - Browse list of files in current directory
 "   <leader>g - Search current directory for occurences of given term and close window if no results
-"   <leader>j - Search current directory for occurences of word under cursor
+"   <leader>o - Search current directory for occurences of word under cursor
 nmap ; :Denite buffer<CR>
 nmap <leader>t :DeniteProjectDir file/rec<CR>
 nnoremap <leader>g :<C-u>Denite grep:. -no-empty<CR>
-"nnoremap <leader>j :<C-u>DeniteCursorWord grep:.<CR>
+nnoremap <leader>o :<C-u>DeniteCursorWord grep:.<CR>
 " Define mappings while in 'filter' mode
 "   <C-o>         - Switch to normal mode inside of search results
 "   <Esc>         - Exit denite window in any mode
