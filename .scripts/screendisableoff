@@ -1,3 +1,0 @@
-#!/bin/bash
-
-exec xset s off -dpms
