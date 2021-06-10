@@ -1,0 +1,204 @@
+[global/wm]
+margin-top = 20
+margin-bottom = 0
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+screenchange-reload = true
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+[colors]
+background = #0f111b
+foreground = #ecf0c1
+focusedBackground = #5ccc96
+unfocusedBackground = #ce6f8f
+visibleBackground = #00a3cc
+underline = #e39400
+alert = #e33400
+
+##############################################
+# Dummy bar to work aroung override-redirect #
+##############################################
+#
+[bar/dummy]
+monitor = DP-0
+monitor-strict = false
+bottom = false
+fixed-center = true
+height = 30
+width = 1%
+
+ override-redirect = false
+
+ pseudo-transparency = true
+ background = #00000000
+
+ modules-center = dummy-text
+
+ [module/dummy-text]
+ type = custom/text
+ content = " "
+
+###############################################
+################### Top Bar ###################
+###############################################
+
+[bar/mainbar]
+
+monitor = DP-0
+monitor-strict = false
+override-redirect = true
+bottom = false
+fixed-center = true
+width = 90%
+heigth = 30
+offset-x = 5%
+offset-y = 5
+separator = |
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+radius = 15
+line-size = 2
+line-color = #000000
+
+border-size = 0
+border-color = #000000
+
+padding-left = 0
+padding-rigth = 16
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = SF Mono:size=10:weight=bold:0
+font-1 = FontAwesome5Free:style=Solid:size=10;0
+font-2 = FontAwesome5Free:style=Regular:size=10;0
+font-3 = FontAwesome5Brands:style=Regular:size=10;0
+
+modules-left = i3 xwindow
+modules-center = date popup-calendar
+modules-right = memory cpu temperature
+
+tray-detached = false
+tray-offset-x = -10
+tray-offset-y = 0
+tray-padding = 2
+tray-maximize = 20
+tray-scale = 1.0
+tray-position = right
+tray-backgroud = ${colors.backgroud}
+
+[module/date]
+type = internal/date
+interval = 1
+date = " %a %d-%m-%Y"
+time = %H:%M
+format-foreground = #ecf0c1
+format-underline = ${colors.underline}
+label = " %date% %time% "
+
+[module/popup-calendar]
+type = custom/script
+exec = ~/.config/polybar/scripts/popup-calendar.sh
+interval = 5
+click-left =  ~/.config/polybar/scripts/popup-calendar.sh --popup &
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.underline}
+
+[module/i3]
+type = internal/i3
+
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = false
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-default = ""
+
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = #000000
+label-mode-background = #FFBB00
+
+label-focused = %icon% %name%
+label-focused-background = ${colors.focusedBackground}
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 2
+
+label-visible = %icon% %name%
+label-visible-background = ${colors.visibleBackground}
+label-visible-padding = 2
+
+label-unfocused = %icon% %name%
+label-unfocused-padding = 2
+label-unfocused-background = ${colors.unfocusedBackground}
+label-unfocused-foreground = ${colors.foreground}
+
+label-urgent = %icon% %name%
+label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.foreground}
+label-urgent-padding = 2
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 50
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.underline}
+
+[module/temperature]
+type = internal/temperature
+
+interval = 1
+thermal-zone = 0
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon3/temp1_input
+label = "CPU  %temperature-c%"
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.underline}
+
+[module/cpu]
+type = internal/cpu
+
+interval = 1
+label = CPU  %percentage%%
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.underline}
+
+[module/memory]
+type = internal/memory
+
+label = RAM  %gb_used%/%gb_total%
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-underline = ${colors.underline}
