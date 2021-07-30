@@ -6,6 +6,7 @@ set hlsearch			" Highlight search results
 set ignorecase			" Ignore case in search
 set smartcase			" Don't ignore case in search if specified
 set noerrorbells		" Error bells are annoying
+set cursorline          " Highlight current line
 set belloff=esc
 set autoindent
 set noexpandtab
@@ -22,6 +23,7 @@ set showmatch
 set termguicolors
 set splitright splitbelow
 set so=999
+set autoread            "Automatic file 'reload'
 set list lcs=tab:\¦\    "(here is a space)
 let &t_SI = "\e[6 q"    " Make cursor a line in insert
 let &t_EI = "\e[2 q"    " Make cursor a line in insert
@@ -53,7 +55,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Exit terminal insert mode
-:tnoremap <Esc> <C-\><C-n>
+":tnoremap <Esc> <C-\><C-n>
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
@@ -70,12 +72,15 @@ call plug#begin('~/.vim/plugged')
 " Common
 Plug 'tpope/vim-sensible' " Some sensible configs for vim
 Plug 'morhetz/gruvbox' " Colorscheme
+Plug 'joshdick/onedark.vim' "Colorscheme
+Plug 'wojciechkepka/vim-github-dark' "Colorscheme
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Colorscheme
 Plug 'scrooloose/nerdcommenter' " Easy commenting
 "Plug 'ryanoasis/vim-devicons' " Nice icons for NERDTree etc
 Plug 'ryanoasis/vim-webdevicons' " More nice icons :)
 Plug 'sheerun/vim-polyglot' " Some syntax highlighting
 Plug 'Raimondi/delimitmate' " Automatic bracket etc closing
+Plug 'airblade/vim-gitgutter' "Git changes etc
 
 " Statusline
 Plug 'vim-airline/vim-airline'
@@ -89,6 +94,7 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} " File navigator
 Plug 'Xuyuanp/nerdtree-git-plugin' " Git plug for nerdtree
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}} " Fuzzy search (kinda like cmp+p in vscode)
 Plug 'junegunn/fzf.vim' " Enable fuzzy search in vim
+Plug 'sindrets/diffview.nvim' " DiffSplit
 
 " Smooth scroll
 Plug 'psliwka/vim-smoothie'
@@ -99,7 +105,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intelisense
 call plug#end()
 
 " Statusline
-let g:airline_theme = 'spaceduck'
+"let g:airline_theme = 'spaceduck'
+let g:airline_theme = 'onedark'
 
 " Buffer info
 let g:airline#extensions#tabline#enabled = 1
@@ -108,7 +115,8 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-"colorscheme gruvbox
+" Fix possibly broken syntax highlighting
+autocmd BufEnter * syntax sync fromstart
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -116,7 +124,11 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme spaceduck
+"colorscheme gruvbox
+"colorscheme spaceduck
+colorscheme onedark
+"colorscheme ghdark
+let g:gh_color = "soft"
 
 " Ale configs
 let g:ale_fixers = {
@@ -134,6 +146,9 @@ autocmd StdinReadPre * let s:std_in=1
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
+:let g:NERDTreeWinSize=55
 
 " Fuzzy search (fzf)
 " Needs the silver surfer https://github.com/ggreer/the_silver_searcher (Ag)
