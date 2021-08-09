@@ -24,7 +24,6 @@ set termguicolors
 set splitright splitbelow
 set so=999
 set autoread            "Automatic file 'reload'
-set list lcs=tab:\¦\    "(here is a space)
 let &t_SI = "\e[6 q"    " Make cursor a line in insert
 let &t_EI = "\e[2 q"    " Make cursor a line in insert
 
@@ -69,44 +68,47 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/plugged')
+
 " Common
 Plug 'tpope/vim-sensible' " Some sensible configs for vim
-Plug 'morhetz/gruvbox' " Colorscheme
-Plug 'joshdick/onedark.vim' "Colorscheme
-Plug 'wojciechkepka/vim-github-dark' "Colorscheme
-Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Colorscheme
 Plug 'scrooloose/nerdcommenter' " Easy commenting
 "Plug 'ryanoasis/vim-devicons' " Nice icons for NERDTree etc
 Plug 'ryanoasis/vim-webdevicons' " More nice icons :)
 Plug 'sheerun/vim-polyglot' " Some syntax highlighting
 Plug 'Raimondi/delimitmate' " Automatic bracket etc closing
 Plug 'airblade/vim-gitgutter' "Git changes etc
-
+" Colorschemes
+Plug 'andreypopp/vim-colors-plain'
+Plug 'morhetz/gruvbox' " Colorscheme
+Plug 'joshdick/onedark.vim' "Colorscheme
+Plug 'wojciechkepka/vim-github-dark' "Colorscheme
+Plug 'pineapplegiant/spaceduck', { 'branch': 'main' } " Colorscheme
 " Statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 " File formatting
 Plug 'dense-analysis/ale'
-
 " File management
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} " File navigator
 Plug 'Xuyuanp/nerdtree-git-plugin' " Git plug for nerdtree
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}} " Fuzzy search (kinda like cmp+p in vscode)
 Plug 'junegunn/fzf.vim' " Enable fuzzy search in vim
 Plug 'sindrets/diffview.nvim' " DiffSplit
-
 " Smooth scroll
 Plug 'psliwka/vim-smoothie'
-
 " Language stuff
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Intelisense
+" Indent line
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
 " Statusline
 "let g:airline_theme = 'spaceduck'
 let g:airline_theme = 'onedark'
+
+" IndentLine
+"let g:indentLine_setColors = 0
 
 " Buffer info
 let g:airline#extensions#tabline#enabled = 1
@@ -126,9 +128,14 @@ endif
 
 "colorscheme gruvbox
 "colorscheme spaceduck
-colorscheme onedark
+"colorscheme onedark
 "colorscheme ghdark
-let g:gh_color = "soft"
+"let g:gh_color = "soft"
+set background=dark
+colorscheme plain
+
+" Hard time always on
+"let g:hardtime_default_on = 1
 
 " Ale configs
 let g:ale_fixers = {
@@ -154,7 +161,15 @@ autocmd FileType nerdtree setlocal relativenumber
 " Needs the silver surfer https://github.com/ggreer/the_silver_searcher (Ag)
 nnoremap <C-p> :Files<CR>
 nnoremap <C-a> :Ag<CR>
-nnoremap <C-i> :Buffers<CR>
+nnoremap <C-y> :Buffers<CR>
+
+" Bring search result to middle screen
+nnoremap n nzz
+nnoremap N Nzz
+
+" Add j and k with count to jumplist
+nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 let g:coc_global_extensions = [
     \ 'coc-tsserver',
