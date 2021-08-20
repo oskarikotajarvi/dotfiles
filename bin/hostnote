@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ls -r Documents/notes/*.md | head -n1 | xargs grip
