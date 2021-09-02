@@ -11,7 +11,7 @@ source ~/.config/nvim/vim-plug/nvcode.vim
 source ~/.config/nvim/vim-plug/telescope-config.vim
 
 luafile ~/.config/nvim/lua/cmp-config.lua
-" npm install -g @angular/langugage-server vscode-langservers-extracted @tailwindcss/langugage-server vim-language-server
+" npm install -g @angular/langugage-server vscode-langservers-extracted @tailwindcss/langugage-server vim-language-server typescript typescript-language-server
 luafile ~/.config/nvim/lua/lsp-typescript.lua
 luafile ~/.config/nvim/lua/lsp-html.lua
 luafile ~/.config/nvim/lua/lsp-css.lua
