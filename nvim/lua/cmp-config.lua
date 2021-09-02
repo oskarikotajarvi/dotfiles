@@ -14,10 +14,9 @@ local cmp = require('cmp')
         })
     },
 
--- npm install -g @angular/language-server
     sources = {
       { name = 'buffer' },
-       { name = 'nvim_lsp' }, 
+       { name = 'nvim_lsp' },
        { name = 'look' },
        { name = 'buffer' },
        { name = 'path' },
