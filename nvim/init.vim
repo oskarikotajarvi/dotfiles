@@ -1,3 +1,7 @@
+"set runtimepath^=~/.vim runtimepath+=~/.vim/after
+"let &packpath=&runtimepath
+"source ~/.vimrc
+
 source ~/.config/nvim/vim-plug/plugins.vim
 source ~/.config/nvim/general/settings.vim
 source ~/.config/nvim/keys/mappings.vim
@@ -27,3 +31,5 @@ augroup END
 autocmd BufWritePre * %s/\s\+$//e
 " Fix possibly broken syntax when entering buffer
 autocmd BufEnter * syntax sync fromstart
+" No commenting on newline
+autocmd BufNewFile,BufRead * setlocal formatoptions-=cro

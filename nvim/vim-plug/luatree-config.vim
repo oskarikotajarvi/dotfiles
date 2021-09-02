@@ -1,7 +1,7 @@
 let g:nvim_tree_side = 'left' "left by default
 let g:nvim_tree_width = 40 "30 by default, can be width_in_columns or 'width_in_percent%'
 let g:nvim_tree_gitignore = 1 "0 by default
-let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+let g:nvim_tree_auto_open = 0 "0 by default, opens the tree when typing `vim $DIR` or `vim`
 let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
 let g:nvim_tree_follow_update_path = 1 "0 by default, will update the path of the current dir if the file is not inside the tree.
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open

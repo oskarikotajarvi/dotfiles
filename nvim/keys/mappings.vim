@@ -21,7 +21,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" Yank end of line
+" Delete a line without setting it to registry
+nnoremap <leader>dd "_dd
+
+"Yank end of line
 nnoremap Y y$
 
 " Keep cursor centered when going to next or previous result

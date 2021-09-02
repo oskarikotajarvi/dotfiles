@@ -24,3 +24,4 @@ set updatetime=50
 set colorcolumn=120
 set cursorline
 set autoread
+set formatoptions-=cro
