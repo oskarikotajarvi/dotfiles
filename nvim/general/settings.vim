@@ -25,3 +25,4 @@ set colorcolumn=120
 set cursorline
 set autoread
 set formatoptions-=cro
+set splitright
